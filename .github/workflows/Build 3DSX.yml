@@ -1,0 +1,36 @@
+name: Mania-3DS 3DSX
+
+on: workflow_dispatch
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.issue.number || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  Mania3DS:
+    runs-on: ubuntu-latest
+    container:
+      image: devkitpro/devkitarm:latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Install build requirements
+        run: |
+          apt update
+          apt install ninja-build
+      - name: Download and install dependencies
+        run : |
+          apt install build-essential git libsdl2-dev libvorbis-dev libogg-dev libtheora-dev -y   
+      - name: Build Sonic Mania for the Nintendo 3DS
+        run: PLATFORM=3DS make
+      - name: Move artifacts
+        run: |
+          mkdir artifacts
+          mv ./bin/3DS/CTR/ ./artifacts
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: Mania 3DS
+          path: artifacts         

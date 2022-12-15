@@ -1,4 +1,4 @@
-name: Mania-3DS
+name: Mania-3DS CIA
 
 on: workflow_dispatch
 
@@ -24,7 +24,7 @@ jobs:
         run : |
           apt install build-essential git libsdl2-dev libvorbis-dev libogg-dev libtheora-dev -y   
       - name: Build Sonic Mania for the Nintendo 3DS
-        run: PLATFORM=3DS make
+        run: makerom -f cia -o ../bin/3DS/CTR/SonicMania.cia -DAPP_ENCRYPTED=false -elf ../bin/3DS/CTR/RSDKv5.elf -rsf ./SonicMania.rsf -exefslogo -target t -icon ../bin/3DS/CTR/out/icon.icn -banner ../bin/3DS/CTR/out/banner.bnr &&
       - name: Move artifacts
         run: |
           mkdir artifacts
