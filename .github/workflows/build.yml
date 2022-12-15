@@ -24,4 +24,13 @@ jobs:
         run : |
           apt install build-essential git libsdl2-dev libvorbis-dev libogg-dev libtheora-dev -y   
       - name: Build Sonic Mania for the Nintendo 3DS
-        run: make PLATFORM=3DS    
+        run: PLATFORM=3DS make
+      - name: Move artifacts
+        run: |
+          mkdir artifacts
+          mv ./bin/3DS/CTR/ ./artifacts
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: Mania 3DS
+          path: artifacts         
