@@ -19,6 +19,9 @@ jobs:
         run: |
           apt update
           apt install ninja-build
+      - name: Clone recursive
+        run: |
+          git clone --recursive       
       - name: Download and install dependencies
         run : |
           apt install build-essential git libsdl2-dev libvorbis-dev libogg-dev libtheora-dev -y   
