@@ -7,7 +7,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  Nexus3DS:
+  Mania3DS:
     runs-on: ubuntu-latest
     container:
       image: devkitpro/devkitarm:latest
@@ -21,4 +21,4 @@ jobs:
         run : |
           apt install build-essential git libsdl2-dev libvorbis-dev libogg-dev libtheora-dev -y   
       - name: Build Sonic Mania for the Nintendo 3DS
-        run: make PLATFORM=3DS          
+        run: makerom -f cia     

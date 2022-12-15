@@ -1,7 +1,7 @@
 #!/bin/bash 
 
 APP_NAME="Sonic Mania"
-APP_AUTH="SaturnSH2x2, Rubberduckycooly"
+APP_AUTH="SaturnSH2x2, Rubberduckycooly, Ty_1991, Zero0xx"
 
 mkdir -p ../bin/3DS/CTR/out &&
 rm -rf ../bin/3DS/CTR/out/*
